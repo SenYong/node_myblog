@@ -6,7 +6,13 @@ const router = new Router({
     routes: [
         {
           path: '/',
-          component: (resolve) => { require(['../view/index'], resolve) }
+          component: (resolve) => { require(['../view/index'], resolve) },
+          meta: [0]
+        },
+        {
+          path: '/index',
+          component: (resolve) => { require(['../view/index'], resolve) },
+          meta: [0]
         }
     ]
 })

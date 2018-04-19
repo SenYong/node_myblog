@@ -1,8 +1,11 @@
 import request from '../config/request.js'
 
-export function getArticle(){
+export function getArticle(page,num){
+    console.log(page)
+    console.log(num)
     return request({
-        url: "/api/index",
-        method: 'get',
+        url: "/index/getArticle",
+        method: 'post',
+        data: { page, num }
     })
 }
