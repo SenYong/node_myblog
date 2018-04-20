@@ -1,10 +1,50 @@
-export function pageTo(path){
-    this.$router.push({path});
+import request from '@/config/request.js'
+
+export function getArt(){
+    return request({
+        url: '/common/newArt',
+        method: 'post'
+    })
 }
-export function timestampToTime(time){
-    var date = new Date(time * 1000);
-    var year = date.getFullYear() + '-';
-    var month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-    var day = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
-    return year + month + day;
+
+export function getLog(){
+    return request({
+        url: '/common/newLog',
+        method: 'post'
+    })
+}
+
+export function getSay(){
+    return request({
+        url: '/common/newSay',
+        method: 'post'
+    })
+}
+
+export function artRanking(){
+    return request({
+        url: '/common/artRanking',
+        method: 'post'
+    })
+}
+
+export function getInfo(){
+    return request({
+        url: '/common/getInfo',
+        method: 'post'
+    })
+}
+
+export function newArtComment(){
+    return request({
+        url: '/common/newArtComment',
+        method: 'post'
+    })
+}
+
+export function getSayImg(){
+    return request({
+        url: '/common/getSayImg',
+        method: 'post'
+    })
 }

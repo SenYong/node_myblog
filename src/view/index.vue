@@ -1,5 +1,6 @@
 <template>
     <div>
+        <head-top></head-top>
         <div class="mainbody">
           <div class="info">
               <figure> <img src="../images/index.png"  alt="Panama Hat">
@@ -14,8 +15,6 @@
                 <ul class="linkmore">
                   <li><a @click="pageTo('/board')" class="talk" title="给我留言"></a></li>
                   <li><a @click="pageTo('/abouts')" class="address" title="关于我"></a></li>
-                  <!--<li><a href="/" class="email" title="给我写信"></a></li>-->
-                  <!--<li><a href="/" class="photos" title="生活照片"></a></li>-->
                   <li><a href="/" class="heart" title="关注我"></a></li>
                 </ul>
               </div>
@@ -41,28 +40,39 @@
                   </div>
                 </li>
               </ul>
+              <!--bloglist end-->
+              <head-right></head-right>
            </div>
         </div>
+        <head-foot></head-foot>
     </div>
 </template>
 
 <script>
-import { getArticle } from '../api/index';
-import { baseUrl } from '../config/env';
+import { mapGetters, mapActions} from 'vuex';  
+import { getArticle } from '@/api/index';
+import { baseUrl } from '@/config/env';
+import headTop from './public/HeadTop';
+import headRight from './public/HeadRight';
+import headFoot from './public/HeadFoot';
 export default {
   data() {
     return {
         page: 0,
         num: 8,
         list: [],
-        info: {},
         baseUrl
     }
   },
+  components: {headRight, headTop, headFoot},
+  computed:{
+    ...mapGetters(['art', 'log', 'say', 'rank', 'info'])
+  },
   created() {
-    this.fetchData(this.page,this.num)
+    this.fetchData(this.page,this.num);
   },
   methods: {
+    ...mapActions(['newArt']),
     fetchData(page, num) {
       getArticle(page, num).then(res => {
          if(res.code == 0){

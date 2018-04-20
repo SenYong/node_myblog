@@ -13,6 +13,11 @@ const router = new Router({
           path: '/index',
           component: (resolve) => { require(['../view/index'], resolve) },
           meta: [0]
+        },
+        {
+          path: '/abouts',
+          component: (resolve) => { require(['../view/abouts'], resolve)},
+          meta: [1]
         }
     ]
 })

@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
+var route = require('./routes/index.js');
 var app = express();
 
 var debug = require('debug')('my-application'); // debug模块  
@@ -13,10 +14,6 @@ app.set('port', process.env.PORT || 3000); // 设定监听端口
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-
 app.all('*', function(req, res, next) {  
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -24,6 +21,12 @@ app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();  
 }); 
+
+route(app)
+
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', ejs.__express)
@@ -34,9 +37,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
