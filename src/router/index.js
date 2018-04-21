@@ -18,6 +18,26 @@ const router = new Router({
           path: '/abouts',
           component: (resolve) => { require(['../view/abouts'], resolve)},
           meta: [1]
+        },
+        {
+          path: '/article',
+          component: (resolve) => { require(['../view/article'], resolve)},
+          meta: [2]
+        },
+        {
+          path: '/artInfo',
+          component: (resolve) => { require(['../view/artInfo'], resolve)},
+          meta: [2]
+        },
+        {
+          path: '/journal',
+          component: (resolve) => { require(['../view/journal'], resolve)},
+          meta: [3]
+        },
+        {
+          path: '/say',
+          component: (resolve) => { require(['../view/say'], resolve)},
+          meta: [4]
         }
     ]
 })

@@ -93,6 +93,8 @@
     }
   }
 </script>
+
+<!-- 引入less需要全局安装: cnpm i vue-style-loader less-loader css-loader vue-loader less -->
 <style lang="less">
 
   .pagination {
