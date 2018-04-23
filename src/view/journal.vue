@@ -27,7 +27,7 @@
                     <div class="arrow_box">
                       <div class="ti"></div>
                       <div class="ci"></div>
-                      <h2 class="titles"><a @click="logTo(item.l_id)" target="_blank">{{item.l_name}}</a></h2>
+                      <h2 class="titles"><a @click="logDetail(item.l_id)" target="_blank">{{item.l_name}}</a></h2>
                       <ul class="textinfo">
                         <a href="/"><img :src="baseUrl+item.l_img"></a>
                         <p>{{item.l_desc}}</p>
@@ -35,7 +35,7 @@
                       <ul class="details">
                         <li class="likes"><a href="#">{{item.l_hit}}</a></li>
                         <li class="comments"><a href="#">{{item.l_num}}</a></li>
-                        <li class="icon-time"><a href="#">{{item.l_time}}</a></li>
+                        <li class="icon-time"><a href="#">{{timestampToTime(item.l_time)}}</a></li>
                       </ul>
                     </div>
                   </li>
@@ -76,22 +76,22 @@
          this.init(this.page, this.num);
       },
       methods: {
-         init (page, num) {
-             getLogList(page, num).then(res => {
-                if(res.code == 0){
-                   for(var i = 0; i < res.data[0].length; i++){
-                      res.data[0][i]['l_time'] = this.timestampToTime(res.data[0][i]['l_time']);
-                   }
-                   this.total = res.data[1][0].num;
-                   this.list = res.data[0];
-                }
-             }).catch(err => {
-                console.log(err)
-             })
-         },
-         pagechange(currentPage){
+        init (page, num) {
+          getLogList(page, num).then(res => {
+            if(res.code == 0){
+              this.total = res.data[1][0].num;
+              this.list = res.data[0];
+            }
+          }).catch(err => {
+            this.$message.error(err);
+          })
+        },
+        pagechange(currentPage){
              this.init(currentPage - 1, this.num)
-         }
+        },
+        logDetail(id){
+          this.$router.push({path: '/journalInfo', query: {id}})
+        }
       }
     }
 </script>

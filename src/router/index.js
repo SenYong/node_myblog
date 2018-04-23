@@ -35,9 +35,24 @@ const router = new Router({
           meta: [3]
         },
         {
+          path: '/journalInfo',
+          component: (resolve) => { require(['../view/journalInfo'], resolve)},
+          meta: [3]
+        },
+        {
           path: '/say',
           component: (resolve) => { require(['../view/say'], resolve)},
           meta: [4]
+        },
+        {
+          path: '/sayInfo',
+          component: (resolve) => { require(['../view/sayInfo'], resolve)},
+          meta: [4]
+        },
+        {
+          path: '/board',
+          component: (resolve) => { require(['../view/board'], resolve)},
+          meta: [5]
         }
     ]
 })

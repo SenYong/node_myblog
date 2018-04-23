@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var os = require("os")
+var os = require("os");
 var db = require('../database/mysql.js');
 
 router.post('/art/getArtList', function(req, res, next) {  
@@ -33,19 +33,27 @@ router.post('/art/artDetail', function(req, res, next){
     })
 })
 
+router.post('/art/getArtComment', function(req, res, next){
+    var id = req.body.id;
+    var sql = 'SELECT * FROM `fh_article` INNER JOIN fh_article_c ON fh_article_c.ac_pid=fh_article.a_id WHERE a_id='+id + ';'
+    db.query(sql, function(err, result){
+        if(err) return;
+        res.end(JSON.stringify({data: result, msg: "成功", code: 0}));
+    })
+})
+
 router.post('/art/userComment', function(req,res, next){
     var ac_pid = req.body.ac_pid;
-    var ac_name = req.body.ac_name + "";
-    var ac_img = req.body.ac_img+"";
-    var ac_content = req.body.ac_content+"";
+    var ac_name = req.body.ac_name;
+    var ac_img = req.body.ac_img;
+    var ac_content = req.body.ac_content;
     var ac_ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress) + "";
-    var ac_system = os.type()+"";
+    var ac_system = os.type();
     var ac_time = Date.parse(new Date()) / 1000;
     var sql = 'INSERT INTO fh_article_c(ac_pid,ac_name,ac_img,ac_content,ac_ip,ac_system,ac_time) VALUES(?,?,?,?,?,?,?)';
     var addSqlParams = [ac_pid,ac_name,ac_img,ac_content,ac_ip,ac_system,ac_time]
-    db.query(sql,addSqlParams,function(err,result){
+    db.insert(sql,addSqlParams,function(err,result){
         if (err) return;
-        console.log(addSqlParams)
         res.end(JSON.stringify({id:addSqlParams, msg: "成功", code: 0}))
     })
 })

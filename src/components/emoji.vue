@@ -24,9 +24,6 @@ export default {
       activeIndex: 0
     }
   },
-  created(){
-     console.log(this.emojiData)
-  },
   methods: {
     changeActive (index) {
       this.activeIndex = index

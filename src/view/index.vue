@@ -35,7 +35,7 @@
                       <ul class="details">
                         <li class="likes"><a href="#">{{item.a_hit}}</a></li>
                         <li class="comments"><a href="#">{{item.a_num}}</a></li>
-                        <li class="icon-time"><a href="#">{{item.a_time}}</a></li>
+                        <li class="icon-time"><a href="#">{{timestampToTime(item.a_time)}}</a></li>
                       </ul>
                     </div>
                   </li>
@@ -76,10 +76,7 @@ export default {
     fetchData(page, num) {
       getArticle(page, num).then(res => {
          if(res.code == 0){
-            for(let i = 0; i < res.data[0].length; i++){
-              res.data[0][i]["a_time"] = this.timestampToTime(res.data[0][i]["a_time"]);
-            }
-            this.list = res.data[0];
+          this.list = res.data[0];
          }
       })
     },

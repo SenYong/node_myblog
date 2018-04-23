@@ -27,7 +27,7 @@
                     <div class="arrow_box">
                       <div class="ti"></div>
                       <div class="ci"></div>
-                      <h2 class="titles"><a @click="artTo(item.a_id)" target="_blank">{{item.a_name}}</a></h2>
+                      <h2 class="titles"><a @click="artDetail(item.a_id)" target="_blank">{{item.a_name}}</a></h2>
                       <ul class="textinfo">
                         <a href="/"><img :src="baseUrl+item.a_img"></a>
                         <p> {{item.a_desc}}</p>
@@ -35,7 +35,7 @@
                       <ul class="details">
                         <li class="likes"><a href="#">{{item.a_hit}}</a></li>
                         <li class="comments"><a href="#">{{item.a_num}}</a></li>
-                        <li class="icon-time"><a href="#">{{item.a_time}}</a></li>
+                        <li class="icon-time"><a href="#">{{timestampToTime(item.a_time)}}</a></li>
                       </ul>
                     </div>
                   </li>
@@ -79,18 +79,18 @@
           init (page, num) {
              getArtList(page, num).then(res => {
                 if(res.code == 0){
-                  for(var i = 0; i < res.data[0].length; i++){
-                    res.data[0][i]['a_time'] = this.timestampToTime(res.data[0][i]['a_time']);
-                  }
                   this.total = res.data[1][0].num
                   this.list = res.data[0];
                 }
              }).catch(err => {
-                console.log(err)
+                this.$message.error(err)
              })
           },
           pagechange(currentPage){
              this.init(currentPage - 1, this.num)
+          },
+          artDetail(id){
+             this.$router.push({ path: '/artInfo', query: {id}});
           }
        }
     }

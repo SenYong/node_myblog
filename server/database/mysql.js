@@ -24,4 +24,20 @@ db.query = function(sql, callback){
       callback(null, rows, fields);  
     });  
 }  
+
+db.insert = function(sql, addSqlParams, callback){
+  if(!sql){
+    callback();
+    return;
+  }
+  pool.query(sql, addSqlParams, function(err, result, fields){
+    if(err){
+      console.log(err);
+      callback(err,null);
+      return;
+    }
+    callback(null, result, fields);
+  })
+}
+
 module.exports = db; 
