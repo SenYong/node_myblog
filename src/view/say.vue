@@ -55,7 +55,7 @@
                      this.list = res.data[0];
                   }
                }).catch(err => {
-                  console.log(err)
+                  this.$message.error(err)
                })
             },
             pagechange(current){

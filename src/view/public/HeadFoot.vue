@@ -13,11 +13,10 @@
             <dl v-for="(item,index) in newArt">
               <dt><img :src="baseUrl+item.a_img"></dt>
               <dd>{{item.ac_name}}
-                <time>{{item.ac_time}}</time>
+                <time>{{timestampToTime(item.ac_time)}}</time>
               </dd>
               <dd>在 <a  class="title cur" @click="navTo('/artInfo', item.a_id)">{{item.a_name}} </a>中评论：</dd>
-              <!--<dd v-html="emoji(item.ac_content)"></dd>-->
-              <dd>{{item.ac_content}}</dd>
+              <dd v-html="emoji(item.ac_content)"></dd>
             </dl>
           </div>
           <section class="flickr">
@@ -44,6 +43,11 @@
         },
         computed:{
             ...mapGetters(['newArt', 'sayImg'])
+        },
+        methods: {
+          navTo(path, id){
+            this.$router.push({path, query:{id}})
+          }
         }
     }
 </script>

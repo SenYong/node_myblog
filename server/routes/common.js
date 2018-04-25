@@ -58,7 +58,7 @@ router.post('/common/newArtComment', function(req, res, next){
 
 //获取说说图片
 router.post('/common/getSayImg', function(req, res, next){
-    var sql = 'SELECT s_img FROM `fh_say`';
+    var sql = 'SELECT s_img,s_id FROM `fh_say`';
     db.query(sql, function(err, result){
         if(err) return;
         res.end(JSON.stringify({data: result, msg: "成功", code: 0}));

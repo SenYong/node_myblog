@@ -81,7 +81,6 @@
     methods: {
       getData(){
         getBoardComment().then(res => {
-          console.log(res)
           if(res.code == 0){
             this.comment = res.data;
           }

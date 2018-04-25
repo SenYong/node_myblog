@@ -11,15 +11,17 @@
                 <h2>最新说说</h2>
                 <ul>
                   <li v-for="(item, index) in say">
-                     <!--<a class="cur" @click="navTo('/sayInfo', item.s_id)"><img :src="baseUrl+item.s_img" class="sayImg"><span v-html="emoji(item.s_content)"></span><p>伤不起</p></a>-->
-                     <a class="cur" @click="navTo('/sayInfo', item.s_id)"><img :src="baseUrl+item.s_img" class="sayImg"><span></span><p>伤不起</p></a>
+                     <a class="cur" @click="navTo('/sayInfo', item.s_id)"><img :src="baseUrl+item.s_img" class="sayImg"><span v-html="emoji(item.s_content)"></span><p>伤不起</p></a>
                   </li>
                 </ul>
               </div>
               <div class="clicks">
                 <h2>最新日志</h2>
                 <ol>
-                  <li v-for="(item, index) in log"><span><a class="cur" @click="navTo('/journalInfo', item.l_id)">慢生活</a></span><a class="cur">{{item.l_name}}</a></li>
+                  <li v-for="(item, index) in log">
+                       <span><a class="cur">慢生活</a></span>
+                       <a class="cur" @click="navTo('/journalInfo', item.l_id)">{{item.l_name}}</a>
+                  </li>
                 </ol>
               </div>
               <!--  <div class="search">
@@ -50,11 +52,17 @@
    export default{
       data(){
         return{
-            baseUrl
+            baseUrl,
+            search: ""
         }
       },
       computed:{
         ...mapGetters(['art', 'log', 'say', 'rank', 'info'])
+      },
+      methods:{
+        navTo (path, id){
+          this.$router.push({path, query:{id}})
+        }
       }
    }
 </script>

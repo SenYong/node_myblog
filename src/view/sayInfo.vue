@@ -117,7 +117,6 @@
       },
       getUserComment(id){
         getSayComment(id).then(res => {
-          console.log(res)
           if(res.code == 0){
             this.comment = res.data;
           }
@@ -152,7 +151,10 @@
     },
     watch: {
       '$route' (to, from){
-        this.$router.go(0);
+        this.sc_pid = to.query.id;
+        this.getData(this.sc_pid);
+        this.getUserComment(this.sc_pid);
+        //this.$router.go(0);
       }
     }
   }

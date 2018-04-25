@@ -163,7 +163,10 @@
         },
         watch: {
           '$route' (to, from) {
-            this.$router.go(0);
+            this.ac_pid = to.query.id;
+            this.getData(this.ac_pid);
+            this.getUserComment(this.ac_pid )
+             //this.$router.go(0);
           }
         }
     }

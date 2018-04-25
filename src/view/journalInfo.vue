@@ -78,7 +78,10 @@
           <!--topnews-->
         </div>
         <!--l_box f_l-->
+        <head-right></head-right>
       </article>
+      <div class="clear"></div>
+      <head-foot></head-foot>
     </div>
 </template>
 <script type="text/javascript">
@@ -156,7 +159,10 @@
       },
       watch: {
         '$route' (to, from) {
-          this.$router.go(0);
+          this.lc_pid = to.query.id;
+          this.getData(this.lc_pid);
+          this.getUserComment(this.lc_pid)
+          //this.$router.go(0);
         }
       }
     }
