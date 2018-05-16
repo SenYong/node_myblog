@@ -68,7 +68,7 @@ export default {
   computed:{
     ...mapGetters(['art', 'log', 'say', 'rank', 'info'])
   },
-  created() {
+  created(){
     this.fetchData(this.page,this.num);
   },
   methods: {

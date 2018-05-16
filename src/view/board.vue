@@ -11,40 +11,40 @@
                 <i class="icon iconfont icon-face" @click="showEmoji = !showEmoji"></i>
                 <el-button type="success" size="small" @click="submit" class="submit" :disabled="isDisabled">提交</el-button>
                 <transition name="fade" mode="">
-                   <div class="emoji-box" v-if="showEmoji" >
-                      <el-button  class="pop-close"  :plain="true"  type="danger"  size="mini" icon="close" @click="showEmoji = false"></el-button>
-                      <vue-emoji @select="selectEmoji"></vue-emoji>
-                      <span class="pop-arrow arrow"></span>
-                   </div>       
+                  <div class="emoji-box" v-if="showEmoji" >
+                    <el-button  class="pop-close"  :plain="true"  type="danger"  size="mini" icon="close" @click="showEmoji = false"></el-button>
+                    <vue-emoji @select="selectEmoji"></vue-emoji>
+                    <span class="pop-arrow arrow"></span>
+                  </div>       
                 </transition>
               </div>
             </div>
             <div class="board" v-if="comment.length > 0">
               <div class="titles">
-                 <div class="lt">评论</div>
-                 <div class="rt"><span>{{comment.length}}</span>人参与,<span>{{comment.length}}</span>条评论</div>
+                <div class="lt">评论</div>
+                <div class="rt"><span>{{comment.length}}</span>人参与,<span>{{comment.length}}</span>条评论</div>
               </div>
               <div class="bList" v-for="(item, index) in comment">
-                 <div class="lItem">
-                     <img :src="baseUrl+item.b_img" class="logo">
-                     <div class="lCont">
-                        <p class="p1">
-                          <span class="s1"><b class="name">{{item.b_name}}</b>[{{item.b_ip}}]</span>
-                          <span class="s2">{{timestampToTime(item.b_time)}}</span>
-                        </p>
-                        <p class="p2" v-html="emoji(item.b_content)"></p>
-                     </div>
-                 </div>
-                 <div class="lItem rItem" v-if="item.b_retime">
-                    <img :src="baseUrl + item.b_reimg" class="logo">
-                    <div class="lCont">
-                       <p class="p1">
-                         <span class="s1"><b class="name">{{item.b_rename}}</b>回复<b class="name1">{{item.b_name}}</b></span>
-                         <span class="s2">{{timestampToTime(item.b_retime)}}</span>
-                       </p>
-                       <p class="p2" v-html="emoji(item.b_recontent)"></p>
-                    </div>
-                 </div>
+                <div class="lItem">
+                  <img :src="baseUrl+item.b_img" class="logo">
+                  <div class="lCont">
+                      <p class="p1">
+                        <span class="s1"><b class="name">{{item.b_name}}</b>[{{item.b_ip}}]</span>
+                        <span class="s2">{{timestampToTime(item.b_time)}}</span>
+                      </p>
+                      <p class="p2" v-html="emoji(item.b_content)"></p>
+                  </div>
+                </div>
+                <div class="lItem rItem" v-if="item.b_retime">
+                  <img :src="baseUrl + item.b_reimg" class="logo">
+                  <div class="lCont">
+                     <p class="p1">
+                       <span class="s1"><b class="name">{{item.b_rename}}</b>回复<b class="name1">{{item.b_name}}</b></span>
+                       <span class="s2">{{timestampToTime(item.b_retime)}}</span>
+                     </p>
+                     <p class="p2" v-html="emoji(item.b_recontent)"></p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

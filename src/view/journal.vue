@@ -69,7 +69,7 @@
          }
       },
       computed:{
-         ...mapGetters(['info'])
+        ...mapGetters(['info'])
       },
       components: {headTop, headRight, headFoot, vPagination},
       created (){

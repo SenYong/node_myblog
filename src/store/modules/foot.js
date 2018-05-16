@@ -22,12 +22,13 @@ const foot = {
                   }
                   resolve();
                }).catch(err => {
-                 reject(err);
+                  reject(err);
                }) 
             })
         },
         getsayImg({commit}){
             return new Promise((resolve, reject) => {
+                console.log(res)
                 getSayImg().then(res => {
                     if(res.code == 0){
                        commit('SET_IMG', res.data);

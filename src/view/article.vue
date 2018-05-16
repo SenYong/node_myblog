@@ -58,40 +58,40 @@
     import headFoot from './public/HeadFoot';
     import vPagination from './public/pagination';
     export default{
-       data(){
-          return {
-             page: 0,
-             num: 7,
-             list: [],
-             baseUrl,
-             total: 0,
-             current: 1,
-          }
-       },
-       computed:{
-          ...mapGetters(['info'])
-       },
-       components: {headTop, headRight, headFoot, vPagination},
-       created () {
-          this.init(this.page, this.num)
-       },
-       methods:{
-          init (page, num) {
-             getArtList(page, num).then(res => {
-                if(res.code == 0){
-                  this.total = res.data[1][0].num
-                  this.list = res.data[0];
-                }
-             }).catch(err => {
-                this.$message.error(err)
-             })
-          },
-          pagechange(currentPage){
-             this.init(currentPage - 1, this.num)
-          },
-          artDetail(id){
-             this.$router.push({ path: '/artInfo', query: {id}});
-          }
-       }
+      data(){
+        return {
+          page: 0,
+          num: 7,
+          list: [],
+          baseUrl,
+          total: 0,
+          current: 1,
+        }
+      },
+      computed:{
+        ...mapGetters(['info'])
+      },
+      components: {headTop, headRight, headFoot, vPagination},
+      created () {
+        this.init(this.page, this.num)
+      },
+      methods:{
+        init (page, num) {
+          getArtList(page, num).then(res => {
+            if(res.code == 0){
+              this.total = res.data[1][0].num
+              this.list = res.data[0];
+            }
+          }).catch(err => {
+              this.$message.error(err)
+          })
+        },
+        pagechange(currentPage){
+          this.init(currentPage - 1, this.num)
+        },
+        artDetail(id){
+          this.$router.push({ path: '/artInfo', query: {id}});
+        }
+      }
     }
 </script>

@@ -51,15 +51,15 @@
             init(page, num){
                getSayList(page, num).then(res => {
                   if(res.code == 0){
-                     this.total = res.data[1][0].num;
-                     this.list = res.data[0];
+                    this.total = res.data[1][0].num;
+                    this.list = res.data[0];
                   }
                }).catch(err => {
                   this.$message.error(err)
                })
             },
             pagechange(current){
-               this.init(current-1, this.num)
+              this.init(current-1, this.num)
             },
             sayTo(id){
                this.$router.push({path: '/sayInfo', query:{id}})
